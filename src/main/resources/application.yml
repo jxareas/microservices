@@ -1,0 +1,5 @@
+application:
+  title : Discovery Server
+  name: discovery-server
+  version: 0.0.1-SNAPSHOT
+  author: Jon Areas

@@ -1,0 +1,92 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: discovery-server
+  config:
+    activate:
+      on-profile: jxareas
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  datacenter: EurekaCenter
+  environment: Development
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 10
+
+---
+
+server:
+  port: 8761
+spring:
+  application:
+    name: discovery-server
+  config:
+    activate:
+      on-profile: discovery-server-1
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://discovery-server-2.jxareas.com:8762, http://discovery-server-3.jxareas.com:8763
+  datacenter: EurekaCenter
+  environment: Development
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 10
+
+---
+
+server:
+  port: 8762
+spring:
+  application:
+    name: discovery-server
+  config:
+    activate:
+      on-profile: discovery-server-2
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://discovery-server-1.jxareas.com:8761, http://discovery-server-3.jxareas.com:8763
+  datacenter: EurekaCenter
+  environment: Development
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 10
+
+---
+
+server:
+  port: 8763
+spring:
+  application:
+    name: discovery-server
+  config:
+    activate:
+      on-profile: discovery-server-3
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://discovery-server-1.jxareas.com:8761, http://discovery-server-2.jxareas.com:8762
+  datacenter: EurekaCenter
+  environment: Development
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 10
+
